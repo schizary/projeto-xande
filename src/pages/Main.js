@@ -14,18 +14,17 @@ import * as Location from 'expo-location';
 const Main = () => {
   const navigation = useNavigation();
   
-  // Estado para o formulário
   const [nome, setNome] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
   
-  // Estado para armazenar usuários cadastrados
+  // armazenar usuários cadastrados
   const [usuarios, setUsuarios] = useState([]);
   const [permissaoConcedida, setPermissaoConcedida] = useState(false);
 
-  // Solicitar permissão de localização ao carregar o componente
+  // pede permissão de localização ao carregar o componente
   useEffect(() => {
     (async () => {
       try {
@@ -51,7 +50,7 @@ const Main = () => {
       return;
     }
 
-    // Verificar se a permissão foi concedida
+    // valida se a permissão foi concedida
     if (!permissaoConcedida) {
       Alert.alert(
         'Permissão Necessária',
@@ -63,7 +62,7 @@ const Main = () => {
     try {
       const enderecoCompleto = `${rua}, ${numero}, ${cidade}, ${estado}`;
       
-      // Geocodificação do endereço
+      // codificação do endereço(latitude e longitude)
       const locationResult = await Location.geocodeAsync(enderecoCompleto);
       
       if (locationResult && locationResult.length > 0) {
@@ -79,10 +78,10 @@ const Main = () => {
           }
         };
 
-        // Adiciona o usuário à lista
+        // add o usuário à lista
         setUsuarios(prevUsuarios => [...prevUsuarios, novoUsuario]);
         
-        // Limpa o formulário
+        // limpa o formulário
         setNome('');
         setRua('');
         setNumero('');

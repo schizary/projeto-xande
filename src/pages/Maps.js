@@ -6,10 +6,10 @@ import useLocation from "../hooks/useLocation";
 export default function Maps({ route }) {
   const { coords, errorMsg } = useLocation();
   
-  // Recebe a lista de usuários da navegação
+  // recebe lista dos usuarios
   const usuarios = route.params?.usuarios || [];
 
-  // Array de cores diferentes para cada usuário
+  // cores diferentes
   const cores = [
     '#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', 
     '#1abc9c', '#d35400', '#34495e', '#e67e22', '#27ae60',
